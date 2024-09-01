@@ -10,6 +10,9 @@
         d:DataContext="{d:DesignInstance Type=local:ViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="250" Width="600">
+    <Window.Resources>
+        <WVEvents:UriConverter x:Key="UriConverter"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -25,6 +28,11 @@
                         <Setter Property="IsEnabled" Value="False"/>
                     </Style>
                 </StackPanel.Resources>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Source : "/>
+                    <TextBox Text="{Binding NavHandler.TextboxUrl, Mode=OneWay}" MinWidth="400" x:Name="uriInput"/>
+                    <Button Content="Go" Command="{Binding NavHandler.NavigateCommand}" CommandParameter="{Binding  ElementName=uriInput, Path=Text}" Padding="10, 0" Margin="5,0"/>
+                </StackPanel>
                 <TextBlock Text="{Binding IsEdgeClientInstalled}"/>
                 <TextBlock Text="{Binding InstallType}"/>
                 <TextBlock Text="{Binding InstalledVersion}"/>
@@ -37,7 +45,7 @@
                 <CheckBox Content="Web Message Recieved" IsChecked="{Binding WebMessageReceived, Mode=OneWay}" ToolTip="This is expected to be false."/>
             </StackPanel>
         </GroupBox>
-        <WV:WebView2 Grid.Row="1" x:Name="Viewer" Source="{Binding PageToLoad}" IsEnabled="True" />
+        <WV:WebView2 Grid.Row="1" x:Name="Viewer" Source="{Binding NavHandler.Uri}" IsEnabled="True" />
         <WVEvents:WebView2BindingHelper WebView="{Binding ElementName=Viewer}" NavigationHandler="{Binding NavHandler}" />
     </Grid>
 </Window>
