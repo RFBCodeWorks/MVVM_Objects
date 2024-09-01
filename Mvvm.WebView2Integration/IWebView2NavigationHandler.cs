@@ -40,11 +40,24 @@ namespace RFBCodeWorks.Mvvm.WebView2Integration
     /// </remarks>
     public interface IWebView2NavigationHandlerExpanded : IWebView2NavigationHandler
     {
+        /// <inheritdoc cref="WebView.CoreWebView2.BasicAuthenticationRequested"/>
         void OnBasicAuthenticationRequested(object sender, Microsoft.Web.WebView2.Core.CoreWebView2BasicAuthenticationRequestedEventArgs e);
+
+        /// <summary>
+        /// Event Handler for when the user control has initialized its <see cref="WebView.CoreWebView2"/> object
+        /// </summary>
         void OnCoreWebView2InitializationCompleted(object sender, Microsoft.Web.WebView2.Core.CoreWebView2InitializationCompletedEventArgs e);
+
+        /// <inheritdoc cref="WebView.CoreWebView2.HistoryChanged"/>
         void OnHistoryChanged(object sender, object e);
+
+        /// <inheritdoc cref="WebView.CoreWebView2.WebMessageReceived"/>
         void OnWebMessageReceived(object sender, Microsoft.Web.WebView2.Core.CoreWebView2WebMessageReceivedEventArgs e);
+
+        /// <inheritdoc cref="WebView.CoreWebView2.SourceChanged"/>
         void OnSourceChanged(object sender, Microsoft.Web.WebView2.Core.CoreWebView2SourceChangedEventArgs e);
+
+        /// <inheritdoc cref="WebView.CoreWebView2.ContentLoading"/>
         void OnContentLoading(object sender, Microsoft.Web.WebView2.Core.CoreWebView2ContentLoadingEventArgs e);
     }
 
