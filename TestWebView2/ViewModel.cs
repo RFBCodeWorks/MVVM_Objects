@@ -21,7 +21,8 @@ namespace RFBCodeWorks.Mvvm.WebView2Integration.Tester
                 SourceChangedHandler = (o, e) => SetProperty(ref sourceChangedField, true, nameof(SourceChanged)),
                 CoreWebView2InitializationCompletedHandler = (o, e) => SetProperty(ref initializationCompleteField, true, nameof(IsInitialized)),
                 WebMessageReceivedHandler = (o, e) => SetProperty(ref WebMessageReceivedField, true, nameof(WebMessageReceived)),
-            };
+                Uri = new Uri(System.IO.Path.Combine(Environment.CurrentDirectory, "TestPage.html"))
+        };
         }
         
         private static WebView2InstallInfo InstallInfo { get; } = WebView2InstallInfo.GetInfo();
@@ -31,9 +32,6 @@ namespace RFBCodeWorks.Mvvm.WebView2Integration.Tester
         public string InstallType { get; } = string.Format("Install Type : {0}", InstallInfo.InstallType);
 
         public string IsEdgeClientInstalled { get; } = string.Format("Discovered in Registry : {0}", InstallInfo.IsRegistryKeyDetected);
-
-        public Uri PageToLoad { get; } = new Uri(System.IO.Path.Combine(Environment.CurrentDirectory, "TestPage.html"));
-
 
         public NavigationHandler NavHandler { get; }
 
