@@ -23,35 +23,37 @@ This is a helper namespace to allow MVVM binding to navigation events generated 
 
 ## Example Usage:
 
-xmlns:MyWebView="clr-namespace:RFBCodeWorks.Mvvm.WebView2Integration;assembly=RFBCodeWorks.Mvvm.WebView2Integration"
+XAML Window :
 
-<grid>
+    xmlns:webViewIntegration="https://github.com/RFBCodeWorks/MvvmControls/WebViewIntegration"
 
-<WebView:WebView2
-    x:Name="WV"
-    Source="{Binding InitialSource}"
-    />
+    <grid>
+        <WebView:WebView2
+            x:Name="WV"
+            Source="{Binding InitialSource}"
+            />
 
-<MyWebView:WebView2BindingHelper 
-    WebView="{Binding ElementName=WV}" 
-    NavigationHandler="{Binding NavigationHandler}"/>
+        <webViewIntegration:WebView2BindingHelper 
+            WebView="{Binding ElementName=WV}" 
+            NavigationHandler="{Binding NavigationHandler}"/>
 
-</grid>
+    </grid>
 
 ------
+ViewModel:
 
-MyNavHandler = new NavigationHandler()
-{
-    NavigationStartingHandler = PreventPageNavigation,
-    NavigationCompletedHandler = OnNavigationComplete,
-};
+    MyNavHandler = new NavigationHandler()
+    {
+        NavigationStartingHandler = PreventPageNavigation,
+        NavigationCompletedHandler = OnNavigationComplete,
+    };
 
-private void PreventPageNavigation(object sender, CoreWebView2NavigationStartingEventArgs e)
-{
-    e.Cancel = true;
-}
+    private void PreventPageNavigation(object sender, CoreWebView2NavigationStartingEventArgs e)
+    {
+        e.Cancel = true;
+    }
 
-private void OnNavigationComplete(object sender, EventArgs e)
-{
-    // do something
-}
+    private void OnNavigationComplete(object sender, EventArgs e)
+    {
+        // do something
+    }
